@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, SocialLink
+from .models import Contact, SocialLink, Baner
 
 
 @admin.register(Contact)
@@ -18,3 +18,13 @@ class SocialLinkAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
 
     list_display = ('name', 'url', 'created_at', 'updated_at')
+
+
+@admin.register(Baner)
+class BanerAdmin(admin.ModelAdmin):
+    fields = ('title', 'subtitle', 'image',
+              'youtube_video', 'created_at', 'updated_at')
+
+    readonly_fields = ('created_at', 'updated_at')
+
+    list_display = ('title', 'subtitle', 'image', 'created_at', 'updated_at')
