@@ -1,19 +1,208 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    {% block meta %}{% endblock meta %}
-    <title>{% block title %}{% endblock title %}</title>
-    <link rel="canonical" href="">
 
-    {% block css %}{% endblock css %}
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	{% block meta %}{% endblock meta %}
+	<title>{% block title %}{% endblock title %}</title>
+	<link rel="canonical" href="" />
+
+	<!-- Favicons 
+		<link href="assets/img/favicon.png" rel="icon">
+		<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+		-->
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+	<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+	<link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+	<link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+	<link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+	<!-- Template Main CSS File -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+	{% block css %}{% endblock css %}
 </head>
+
 <body>
-    {% block maincontent %}{% endblock maincontent %}
+	<!-- ======= Top Bar ======= -->
+	<section id="topbar" class="d-flex align-items-center">
+		<div class="container d-flex justify-content-center justify-content-md-between">
+			<div class="contact-info d-flex align-items-center">
+				<i class="bi bi-envelope d-flex align-items-center"><a
+						href="mailto:{{contact_info.email}}">{{contact_info.email}}</a></i>
+				<i class="bi bi-phone d-flex align-items-center ms-4"><span>{{contact_info.phone_number}}</span></i>
+			</div>
+			<div class="social-links d-none d-md-flex align-items-center">
+				{% for link in social_links %}
+				{% if link.name == 'TW' %}<a href="{{link.url}}" class="twitter" target="_blank"
+					rel="noopener noreferrer"><i class="bi bi-twitter"></i></a>
+				{% endif %}
+				{% if link.name == 'FB' %}<a href="{{link.url}}" class="facebook" target="_blank"
+					rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
+				{% endif %}
+				{% if link.name == 'YT' %}<a href="{{link.url}}" class="youtube" target="_blank"
+					rel="noopener noreferrer"><i class="bi bi-youtube"></i></a>
+				{% endif %}
+				{% if link.name == 'IN' %}<a href="{{link.url}}" class="instagram" target="_blank"
+					rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
+				{% endif %}
+				{% if link.name == 'LI' %}<a href="{{link.url}}" class="linkedin" target="_blank"
+					rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- ======= Header ======= -->
+	<header id="header" class="d-flex align-items-center">
+		<div class="container d-flex align-items-center justify-content-between">
+			<h1 class="logo"><a href="{% url 'home' %}">Finanzas y Precios<span>.</span></a></h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			<!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+
+			<nav id="navbar" class="navbar">
+				<ul>
+					<li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+					<li><a class="nav-link scrollto" href="#about">About</a></li>
+					<li><a class="nav-link scrollto" href="#services">Services</a></li>
+					<li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+					<li><a class="nav-link scrollto" href="#team">Team</a></li>
+					<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="#">Drop Down 1</a></li>
+							<li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
+										class="bi bi-chevron-right"></i></a>
+								<ul>
+									<li><a href="#">Deep Drop Down 1</a></li>
+									<li><a href="#">Deep Drop Down 2</a></li>
+									<li><a href="#">Deep Drop Down 3</a></li>
+									<li><a href="#">Deep Drop Down 4</a></li>
+									<li><a href="#">Deep Drop Down 5</a></li>
+								</ul>
+							</li>
+							<li><a href="#">Drop Down 2</a></li>
+							<li><a href="#">Drop Down 3</a></li>
+							<li><a href="#">Drop Down 4</a></li>
+						</ul>
+					</li>
+					<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav><!-- .navbar -->
+
+		</div>
+	</header><!-- End Header -->
+	{% block maincontent %}{% endblock maincontent %}
+
+	<!-- ======= Footer ======= -->
+	<footer id="footer">
+
+
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-lg-3 col-md-6 footer-contact">
+						<h3>Finanzas y Precios<span>.</span></h3>
+						<p>
+							{{contact_info.address}}<br><br>
+							<strong>Teléfono:</strong> {{contact_info.phone_number}}<br>
+							<strong>Correo:</strong> {{contact_info.email}}<br>
+						</p>
+					</div>
+
+					<div class="col-lg-3 col-md-6 footer-links">
+						<h4>Useful Links</h4>
+						<ul>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-3 col-md-6 footer-links">
+						<h4>Our Services</h4>
+						<ul>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-3 col-md-6 footer-links">
+						<h4>Nuestras redes sociales</h4>
+						<p>Síguenos en nuestras redes sociales para mas contenido acerca de nosotros.</p>
+						<div class="social-links mt-3">
+							{% for link in social_links %}
+							{% if link.name == 'TW' %}<a href="{{link.url}}" class="twitter" target="_blank"
+								rel="noopener noreferrer"><i class="bx bxl-twitter"></i></a>
+							{% endif %}
+							{% if link.name == 'FB' %}<a href="{{link.url}}" class="facebook" target="_blank"
+								rel="noopener noreferrer"><i class="bx bxl-facebook"></i></a>
+							{% endif %}
+							{% if link.name == 'YT' %}<a href="{{link.url}}" class="youtube" target="_blank"
+								rel="noopener noreferrer"><i class="bx bxl-youtube"></i></a>
+							{% endif %}
+							{% if link.name == 'IN' %}<a href="{{link.url}}" class="instagram" target="_blank"
+								rel="noopener noreferrer"><i class="bx bxl-instagram"></i></a>
+							{% endif %}
+							{% if link.name == 'LI' %}<a href="{{link.url}}" class="linkedin" target="_blank"
+								rel="noopener noreferrer"><i class="bx bxl-linkedin"></i></a>
+							{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container py-4">
+			<div class="copyright">
+				&copy; Copyright <strong><span>InfoCAP</span></strong>. Todos los derechos reservados
+			</div>
+			<div class="credits">
+				<!-- All the links in the footer should remain intact. -->
+				<!-- You can delete the links only if you purchased the pro version. -->
+				<!-- Licensing information: https://bootstrapmade.com/license/ -->
+				<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bizland-bootstrap-business-template/ -->
+				Diseñado por <a href="https://bootstrapmade.com/">BootstrapMade</a>
+			</div>
+		</div>
+	</footer><!-- End Footer -->
+
+	<div id="preloader"></div>
+	<a href="#hero" class="back-to-top d-flex align-items-center justify-content-center"><i
+			class="bi bi-arrow-up-short"></i></a>
+
+	<!-- Vendor JS Files -->
+	<script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
+	<script src="{% static 'vendor/aos/aos.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+	<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+	<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+	<script src="{% static 'vendor/waypoints/noframework.waypoints.js' %}"></script>
+	<script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+	<!-- Template Main JS File -->
+	<script src="{% static 'js/main.js' %}"></script>
+	{% block js %}{%endblock js %}
 </body>
+
 </html>
