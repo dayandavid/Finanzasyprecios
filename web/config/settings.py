@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # Third Parties
     'ckeditor',
     "debug_toolbar",
+    'easy_thumbnails',
 
     # Local Apps
     'users.apps.UsersConfig',
@@ -129,6 +130,12 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Uploaded media files
+MEDIA_URL = '/uploads/'  # the URL used in our templates for the files
+
+# the absolute file system path to the directory for useruploaded files
+MEDIA_ROOT = BASE_DIR / 'uploads/'
 
 
 # Default primary key field type
