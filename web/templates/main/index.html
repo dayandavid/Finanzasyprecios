@@ -6,6 +6,46 @@
 
 {% block title %}Inicio{% endblock title %}
 
+{% block css %}
+    <style>
+        #hero {
+            width: 100%;
+            height: 75vh;
+            background: url("{{banner.image.url}}") top left;
+            background-size: cover;
+            position: relative;
+          }
+          #hero:before {
+            content: "";
+            background: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+          }
+          @media (min-width: 1024px) {
+            #hero {
+              background-attachment: fixed;
+            }
+          }
+    </style>
+{% endblock css %}
+
 {% block maincontent %}
-    <h1>Start Project</h1>
+    {% if banner %}
+        <!-- ======= Hero Section ======= -->
+        <section id="hero" class="d-flex align-items-center" >
+            <div class="container" data-aos="zoom-out" data-aos-delay="100">
+                <h1>{{banner.title}}</h1>
+                <h2>{{banner.subtitle}}</h2>
+                <div class="d-flex">
+                    <a href="#about" class="btn-get-started scrollto">Nosotros</a>
+                    {% if banner.youtube_video %}<a href="{{banner.youtube_video}}" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Ver Video</span></a>{% endif %}
+                </div>
+            </div>
+        </section><!-- End Hero -->    
+    {% endif %}
+
+
 {% endblock maincontent %}

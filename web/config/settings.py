@@ -33,8 +33,8 @@ INSTALLED_APPS = [
 
     # Third Parties
     'ckeditor',
-    "debug_toolbar",
-    'easy_thumbnails',
+    'debug_toolbar',
+    'django_cleanup.apps.CleanupConfig',
 
     # Local Apps
     'users.apps.UsersConfig',
