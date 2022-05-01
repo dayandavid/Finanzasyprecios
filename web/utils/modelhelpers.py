@@ -2,10 +2,11 @@ from django.db import models
 
 
 class TimeStampedModel(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    
-    updated_at = models.DateTimeField(auto_now=True, editable=False)
+    created_at = models.DateTimeField(
+        auto_now_add=True, editable=False, verbose_name='Fecha de Creación')
+
+    updated_at = models.DateTimeField(
+        auto_now=True, editable=False, verbose_name='Útima actualización')
 
     class Meta:
         abstract = True
-
