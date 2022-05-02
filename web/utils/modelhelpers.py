@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 
 
 class TimeStampedModel(models.Model):
@@ -10,3 +11,11 @@ class TimeStampedModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+def resize_image(*, image: models.ImageField, width: int, height: int) -> None:
+    img = Image.open(image.path)
+
+    image_resolution = (width, height)
+    img.thumbnail(image_resolution, Image.ANTIALIAS)
+    img.save(image.path)

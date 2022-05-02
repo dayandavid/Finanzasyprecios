@@ -1,6 +1,5 @@
-from utils.modelhelpers import TimeStampedModel
+from utils.modelhelpers import TimeStampedModel, resize_image
 from django.db import models
-from PIL import Image
 from ckeditor.fields import RichTextField
 
 
@@ -72,11 +71,7 @@ class Baner(TimeStampedModel):
     def save(self, *args, **kwargs):
         super().save(args, kwargs)
 
-        img = Image.open(self.image.path)
-
-        image_resolution = (1700, 609)
-        img.thumbnail(image_resolution, Image.ANTIALIAS)
-        img.save(self.image.path)
+        resize_image(image=self.image, width=1700, height=609)
 
 
 class AboutUs(TimeStampedModel):
@@ -100,8 +95,4 @@ class AboutUs(TimeStampedModel):
     def save(self, *args, **kwargs):
         super().save(args, kwargs)
 
-        img = Image.open(self.image.path)
-
-        image_resolution = (992, 950)
-        img.thumbnail(image_resolution, Image.ANTIALIAS)
-        img.save(self.image.path)
+        resize_image(image=self.image, width=992, height=950)
