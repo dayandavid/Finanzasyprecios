@@ -15,7 +15,7 @@
             background-size: cover;
             position: relative;
           }
-          #hero:before {
+        #hero:before {
             content: "";
             background: rgba(255, 255, 255, 0.5);
             position: absolute;
@@ -46,6 +46,31 @@
             </div>
         </section><!-- End Hero -->    
     {% endif %}
+	
+	<main id="main">
+		{% if about_us %}
+			<!-- ======= About Section ======= -->
+			<section id="about" class="about section-bg">
+				<div class="container" data-aos="fade-up">
+				  <div class="section-title">
+					<h2>Nosotros</h2>
+					<h3>Aprende mas sobre <span>Nosotros</span></h3>
+					<p>{{about_us.subtitle}}</p>
+				  </div>
+			
+				  <div class="row">
+					<div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+					  <img src="{{about_us.image.url}}" class="img-fluid" alt="Error en carga de imagen">
+					</div>
+					<div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+					  <h3>{{about_us.title}}</h3>
+					  {% autoescape off %}{{about_us.content}}{% endautoescape %}
+					</div>
+				  </div>
+				</div>
+			</section><!-- End About Section -->
+		{% endif %}
 
+	</main>
 
 {% endblock maincontent %}

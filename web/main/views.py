@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from .models import Baner
+from .models import Baner, AboutUs
 
 
 class HomePageView(TemplateView):
@@ -10,4 +10,5 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['banner'] = Baner.objects.first()
+        context['about_us'] = AboutUs.objects.first()
         return context

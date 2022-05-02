@@ -1,6 +1,7 @@
 from utils.modelhelpers import TimeStampedModel
 from django.db import models
 from PIL import Image
+from ckeditor.fields import RichTextField
 
 
 class Contact(TimeStampedModel):
@@ -74,5 +75,33 @@ class Baner(TimeStampedModel):
         img = Image.open(self.image.path)
 
         image_resolution = (1700, 609)
+        img.thumbnail(image_resolution, Image.ANTIALIAS)
+        img.save(self.image.path)
+
+
+class AboutUs(TimeStampedModel):
+    title = models.CharField(verbose_name='Título', max_length=100)
+
+    subtitle = models.CharField(
+        verbose_name='Subtítulo', max_length=120, null=True, blank=True)
+
+    content = RichTextField(verbose_name='Contenido')
+
+    image = models.ImageField(verbose_name='Imagen', upload_to='aboutus', height_field=None,
+                              width_field=None, max_length=None, help_text='Resolución Recomendada: 992x950')
+
+    class Meta:
+        verbose_name = "Nosotros"
+        verbose_name_plural = "Nosotros"
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        super().save(args, kwargs)
+
+        img = Image.open(self.image.path)
+
+        image_resolution = (992, 950)
         img.thumbnail(image_resolution, Image.ANTIALIAS)
         img.save(self.image.path)

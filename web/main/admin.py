@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, SocialLink, Baner
+from .models import Contact, SocialLink, Baner, AboutUs
 
 
 @admin.register(Contact)
@@ -28,3 +28,13 @@ class BanerAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
 
     list_display = ('title', 'subtitle', 'image', 'created_at', 'updated_at')
+
+
+@admin.register(AboutUs)
+class AboutUsAdmin(admin.ModelAdmin):
+    fields = ('title', 'subtitle', 'content',
+              'image', 'created_at', 'updated_at')
+
+    readonly_fields = ('created_at', 'updated_at')
+
+    list_display = ('title', 'image', 'created_at', 'updated_at')
