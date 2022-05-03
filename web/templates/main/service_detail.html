@@ -1,0 +1,34 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block meta %}
+{% endblock meta %}
+
+{% block title %}{{service.name}}{% endblock title %}
+
+{% block maincontent %}
+    <main id="main" data-aos="fade-up">
+            <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                      <h2>{{service.name}}</h2>
+                      <ol>
+                          <li><a href="{% url 'home' %}">Inicio</a></li>
+                          <li>{{service.name}}</li>
+                      </ol>
+                </div>          
+            </div>
+        </section><!-- End Breadcrumbs -->
+        
+        <section class="inner-page">
+            <div class="container">
+                <div class="row">
+                    <h1 class="text-center"><strong>{{service.name}}</strong></h1>
+                    <h3 class="text-center">{{service.short_description}}</h3>
+                    {% autoescape off %}{{service.long_description}}{% endautoescape %}
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock maincontent %}

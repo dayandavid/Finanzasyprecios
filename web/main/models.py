@@ -96,3 +96,25 @@ class AboutUs(TimeStampedModel):
         super().save(args, kwargs)
 
         resize_image(image=self.image, width=992, height=950)
+
+
+class Service(TimeStampedModel):
+    name = models.CharField(verbose_name="Nombre", max_length=50)
+
+    slug = models.SlugField(verbose_name="Nombre URL",
+                            help_text="Este campo es generado automáticamente")
+
+    short_description = models.CharField(
+        verbose_name="Pequeña Descripción", max_length=100)
+
+    long_description = RichTextField(verbose_name="Descripción")
+
+    show = models.BooleanField(
+        verbose_name="Mostrar", default=False, help_text="Chequear para mostrar en la página")
+
+    class Meta:
+        verbose_name = "Servicio"
+        verbose_name_plural = "Servicios"
+
+    def __str__(self):
+        return self.name
