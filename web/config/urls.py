@@ -1,5 +1,6 @@
 import debug_toolbar
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
@@ -17,3 +18,4 @@ urlpatterns = [
 admin.site.site_header  =  "Administración del Sitio"  
 admin.site.site_title  =  "Administración del Sitio"
 admin.site.index_title  =  "Administración"
+admin.site.unregister(Group)

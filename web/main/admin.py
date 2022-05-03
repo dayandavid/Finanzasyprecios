@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, SocialLink, Baner, AboutUs, Service
+from .models import Contact, SocialLink, Baner, AboutUs, Service, TeamMember, TeamMemberSocial
 
 
 @admin.register(Contact)
@@ -52,3 +52,23 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'created_at', 'updated_at', 'show')
 
     list_editable = ('show',)
+
+
+class TeamMemberSocialInline(admin.TabularInline):
+    model = TeamMemberSocial
+    fk_name = 'team_member'
+
+
+@admin.register(TeamMember)
+class TeamMemberAdmin(admin.ModelAdmin):
+    fields = ('name', 'position', 'list_order',
+              'image', 'created_at', 'updated_at')
+
+    readonly_fields = ('created_at', 'updated_at')
+
+    list_display = ('name', 'position', 'list_order',
+                    'created_at', 'updated_at')
+
+    inlines = [
+        TeamMemberSocialInline,
+    ]

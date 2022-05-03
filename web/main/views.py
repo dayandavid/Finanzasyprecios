@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, DetailView
 
-from .models import Baner, AboutUs, Service
+from .models import Baner, AboutUs, Service, TeamMember
 
 
 class HomePageView(TemplateView):
@@ -12,6 +12,9 @@ class HomePageView(TemplateView):
         context['banner'] = Baner.objects.first()
         context['about_us'] = AboutUs.objects.first()
         context['services'] = Service.objects.filter(show=True)
+        context['team_members'] = TeamMember.objects.prefetch_related(
+            'team_member_socials')
+
         return context
 
 

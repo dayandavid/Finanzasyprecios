@@ -123,3 +123,60 @@ class Service(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+
+class TeamMember(TimeStampedModel):
+    name = models.CharField(verbose_name="Nombre", max_length=50)
+
+    position = models.CharField(verbose_name="Posición", max_length=50)
+
+    list_order = models.IntegerField(verbose_name="Posición en la lista",
+                                     help_text="Posición en la página principal. De menor a mayor.", default=1)
+
+    image = models.ImageField(verbose_name='Imagen', upload_to='team', height_field=None,
+                              width_field=None, max_length=None, help_text='Resolución Recomendada: 600x600')
+
+    class Meta:
+        verbose_name = "Miembro del Equipo"
+        verbose_name_plural = "Miembros"
+        ordering = ['list_order']
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        super().save(args, kwargs)
+
+        resize_image(image=self.image, width=600, height=600)
+
+
+class TeamMemberSocial(TimeStampedModel):
+    TWITTER = 'TW'
+    FACEBOOK = 'FB'
+    INSTAGRAM = 'IN'
+    LINKEDIN = 'LI'
+
+    SOCIAL_NETWORKS = [
+        (FACEBOOK, 'Facebook'),
+        (TWITTER, 'Twitter'),
+        (INSTAGRAM, 'Instagram'),
+        (LINKEDIN, 'LinkedIn'),
+    ]
+    name = models.CharField(
+        max_length=2, choices=SOCIAL_NETWORKS, default=FACEBOOK, verbose_name="Nombre")
+
+    url = models.URLField(max_length=200, verbose_name="Dirección URL",
+                          help_text="Ejemplo: https://www.twitter.com/")
+
+    team_member = models.ForeignKey(
+        TeamMember, verbose_name="Miembro del equipo", on_delete=models.CASCADE, related_name='team_member_socials')
+
+    class Meta:
+        verbose_name = "Red Social"
+        verbose_name_plural = "Redes Sociales"
+
+    def __str__(self):
+        return self.name
+
+    def get_full_name(self):
+        return [item[1] for item in self.SOCIAL_NETWORKS if self.name == item[0]][0]
