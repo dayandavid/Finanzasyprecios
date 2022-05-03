@@ -9,7 +9,6 @@ django-cleanup==6.0.0
 django-compressor==4.0
 django-debug-toolbar==3.2.4
 django-js-asset==2.0.0
-easy-thumbnails==2.8.1
 lxml==4.8.0
 Pillow==9.0.1
 psycopg2==2.9.3
