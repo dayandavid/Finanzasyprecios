@@ -29,6 +29,13 @@
               background-attachment: fixed;
             }
           }
+		  .testimonials {
+			padding: 80px 0;
+			background: url("{% static 'img/testimonials-bg.jpg' %}") no-repeat;
+			background-position: center center;
+			background-size: cover;
+			position: relative;
+		  }
     </style>
 {% endblock css %}
 
@@ -93,6 +100,42 @@
     		  	  </div>
     		  	</div>
     		</section><!-- End Services Section -->
+		{% endif %}
+
+		{% if about_us.mision %}
+			<section id="testimonials" class="testimonials">
+				<div class="container" data-aos="zoom-in">
+				
+				  <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+					<div class="swiper-wrapper">
+					
+					  <div class="swiper-slide">
+						<div class="testimonial-item">
+						  <h3>Misión</h3>
+						  <p>
+							<i class="bx bxs-quote-alt-left quote-icon-left"></i>
+								{{about_us.mision}}
+							<i class="bx bxs-quote-alt-right quote-icon-right"></i>
+						  </p>
+						</div>
+					  </div><!-- End testimonial item -->
+					  
+					  <div class="swiper-slide">
+						<div class="testimonial-item">
+						  <h3>Visión</h3>
+						  <p>
+							<i class="bx bxs-quote-alt-left quote-icon-left"></i>
+								{{about_us.vision}}
+							<i class="bx bxs-quote-alt-right quote-icon-right"></i>
+						  </p>
+						</div>
+					  </div><!-- End testimonial item -->
+					</div>
+					<div class="swiper-pagination"></div>
+				  </div>
+			  
+				</div>
+			</section><!-- End Testimonials Section -->
 		{% endif %}
 	</main>
 

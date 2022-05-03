@@ -32,7 +32,7 @@ class BanerAdmin(admin.ModelAdmin):
 
 @admin.register(AboutUs)
 class AboutUsAdmin(admin.ModelAdmin):
-    fields = ('title', 'subtitle', 'content',
+    fields = ('title', 'subtitle', 'content', 'mision', 'vision',
               'image', 'created_at', 'updated_at')
 
     readonly_fields = ('created_at', 'updated_at')

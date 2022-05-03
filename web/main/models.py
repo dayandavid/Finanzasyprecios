@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from utils.modelhelpers import TimeStampedModel, resize_image
 from django.db import models
 from ckeditor.fields import RichTextField
@@ -81,6 +82,10 @@ class AboutUs(TimeStampedModel):
         verbose_name='Subtítulo', max_length=120, null=True, blank=True)
 
     content = RichTextField(verbose_name='Contenido')
+
+    mision = models.TextField(verbose_name='Misión', null=True, blank=True)
+
+    vision = models.TextField(verbose_name='Visión', null=True, blank=True)
 
     image = models.ImageField(verbose_name='Imagen', upload_to='aboutus', height_field=None,
                               width_field=None, max_length=None, help_text='Resolución Recomendada: 992x950')
