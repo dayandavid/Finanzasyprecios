@@ -7,9 +7,10 @@ from django.conf import settings
 
 
 urlpatterns = [
+    path('admin', admin.site.urls),
     path("", include('main.urls')),
 
-    path('admin/', admin.site.urls),
+    
     
     # Django Debug Toolbar
     path('__debug__/', include(debug_toolbar.urls)),
